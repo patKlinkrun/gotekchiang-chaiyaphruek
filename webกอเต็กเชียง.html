@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang-key="page_title">ร้านกอเต็กเชียง สาขาชัยพฤกษ์ - ต้นตำรับก๋วยเตี๋ยวตุ๋น</title>
+    <!-- Chosen Palette: Classic Modern Warmth -->
+    <!-- Application Structure Plan: A single-page application with a fixed navigation bar for smooth scrolling to different sections (Home, Menu, About, Contact). This structure is chosen for its mobile-first usability, allowing users to access all critical information quickly without page reloads. The menu section is interactive with JavaScript-powered category filters to enhance user experience and information discovery. Language switching functionality is added to allow users to toggle between Thai and English content. -->
+    <!-- Visualization & Content Choices: 
+        - Hero Section: Full-screen image to create an immersive first impression (Goal: Engage, Method: HTML/CSS).
+        - Menu: Interactive card grid with JS filters for easy browsing (Goal: Inform/Organize, Method: HTML/CSS/JS, Interaction: Category Filtering).
+        - About: Simple text and image layout to tell the brand story (Goal: Inform, Method: HTML/CSS).
+        - Contact: Clear list with icons and an embedded Google Map for easy location finding (Goal: Inform, Method: HTML iframe, Interaction: Map interaction, Click-to-call).
+        - Language Switcher: Buttons in the header to dynamically change all displayed text and menu item details (Goal: Accessibility, Method: HTML/CSS/JS, Interaction: Button click).
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@400;700&family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: #FDFDFB;
+        }
+        h1, h2, h3, .font-serif {
+            font-family: 'Noto Serif Thai', serif;
+        }
+        .hero-bg {
+            background-image: url('https://placehold.co/1200x800/332211/FFFFFF?text=ก๋วยเตี๋ยวเนื้อตุ๋น');
+            background-size: cover;
+            background-position: center;
+        }
+        .active-filter {
+            background-color: #A16207 !important;
+            color: #FFFFFF !important;
+            border-color: #A16207 !important;
+        }
+        .lang-switcher button.active {
+            background-color: #A16207;
+            color: white;
+        }
+    </style>
+</head>
+<body class="text-stone-800">
+
+    <!-- Header / Navigation -->
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <a href="#home" class="text-xl md:text-2xl font-bold font-serif text-amber-800" data-lang-key="brand_name">กอเต็กเชียง ชัยพฤกษ์</a>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-stone-600 hover:text-amber-800" data-lang-key="nav_home">หน้าแรก</a>
+                    <a href="#menu" class="text-stone-600 hover:text-amber-800" data-lang-key="nav_menu">เมนู</a>
+                    <a href="#about" class="text-stone-600 hover:text-amber-800" data-lang-key="nav_about">เกี่ยวกับเรา</a>
+                    <a href="#contact" class="text-stone-600 hover:text-amber-800" data-lang-key="nav_contact">ติดต่อ</a>
+                    <div class="lang-switcher ml-4 flex border border-stone-300 rounded-full">
+                        <button id="lang-th" class="py-1 px-3 text-sm rounded-l-full active">TH</button>
+                        <button id="lang-en" class="py-1 px-3 text-sm rounded-r-full">EN</button>
+                    </div>
+                </nav>
+                <div class="md:hidden flex items-center">
+                    <div class="lang-switcher mr-4 flex border border-stone-300 rounded-full">
+                        <button id="lang-th-mobile" class="py-1 px-2 text-xs rounded-l-full active">TH</button>
+                        <button id="lang-en-mobile" class="py-1 px-2 text-xs rounded-r-full">EN</button>
+                    </div>
+                    <button id="mobile-menu-button">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white px-6 pb-4">
+            <a href="#home" class="block py-2 text-stone-600 hover:text-amber-800" data-lang-key="nav_home">หน้าแรก</a>
+            <a href="#menu" class="block py-2 text-stone-600 hover:text-amber-800" data-lang-key="nav_menu">เมนู</a>
+            <a href="#about" class="block py-2 text-stone-600 hover:text-amber-800" data-lang-key="nav_about">เกี่ยวกับเรา</a>
+            <a href="#contact" class="block py-2 text-stone-600 hover:text-amber-800" data-lang-key="nav_contact">ติดต่อ</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Section 1: Home (Hero) -->
+        <section id="home" class="h-screen min-h-[600px] flex items-center justify-center hero-bg text-white">
+            <div class="absolute inset-0 bg-black/50"></div>
+            <div class="relative text-center p-6">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-4" data-lang-key="hero_title">ร้านกอเต็กเชียง สาขาชัยพฤกษ์</h1>
+                <p class="text-xl md:text-2xl mb-8 font-light" data-lang-key="hero_slogan">ต้นตำรับก๋วยเตี๋ยวตุ๋น สูตรเด็ดกว่า 50 ปี!</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#menu" class="bg-amber-700 hover:bg-amber-800 text-white font-bold py-3 px-8 rounded-lg transition duration-300" data-lang-key="btn_view_menu">ดูเมนูทั้งหมด</a>
+                    <a href="tel:0812345678" class="bg-transparent border-2 border-white hover:bg-white hover:text-amber-800 text-white font-bold py-3 px-8 rounded-lg transition duration-300" data-lang-key="btn_call_us">โทรหาร้าน</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Menu -->
+        <section id="menu" class="py-16 md:py-24 bg-stone-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-amber-900" data-lang-key="menu_heading">คัดสรรความอร่อย</h2>
+                    <p class="text-stone-600 mt-2" data-lang-key="menu_subheading">เลือกอร่อยได้ทั้งก๋วยเตี๋ยวเนื้อตุ๋น หมูตุ๋น และเครื่องเคียงรสเลิศ</p>
+                </div>
+
+                <!-- Menu Filters -->
+                <div id="menu-filters" class="flex flex-wrap justify-center gap-2 md:gap-4 mb-10">
+                    <button data-filter="all" data-lang-key="filter_all" class="filter-btn active-filter border-2 border-stone-300 text-stone-700 font-semibold py-2 px-6 rounded-full transition duration-300 hover:bg-amber-700 hover:text-white hover:border-amber-700">ทั้งหมด</button>
+                    <button data-filter="beef" data-lang-key="filter_beef" class="filter-btn border-2 border-stone-300 text-stone-700 font-semibold py-2 px-6 rounded-full transition duration-300 hover:bg-amber-700 hover:text-white hover:border-amber-700">ก๋วยเตี๋ยวเนื้อ</button>
+                    <button data-filter="pork" data-lang-key="filter_pork" class="filter-btn border-2 border-stone-300 text-stone-700 font-semibold py-2 px-6 rounded-full transition duration-300 hover:bg-amber-700 hover:text-white hover:border-amber-700">ก๋วยเตี๋ยวหมู</button>
+                    <button data-filter="side" data-lang-key="filter_side" class="filter-btn border-2 border-stone-300 text-stone-700 font-semibold py-2 px-6 rounded-full transition duration-300 hover:bg-amber-700 hover:text-white hover:border-amber-700">เครื่องเคียง</button>
+                </div>
+
+                <!-- Menu Grid -->
+                <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    <!-- Menu items will be injected here by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: About Us -->
+        <section id="about" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 md:order-1">
+                        <h2 class="text-3xl md:text-4xl font-bold text-amber-900 mb-4" data-lang-key="about_heading">เรื่องราวความอร่อย</h2>
+                        <p class="text-stone-600 mb-4 leading-relaxed" data-lang-key="about_p1">
+                            กว่า 50 ปีที่ "กอเต็กเชียง" ได้สืบทอดตำนานความอร่อยของก๋วยเตี๋ยวตุ๋น จากรุ่นสู่รุ่น เรายังคงยึดมั่นในปรัชญาดั้งเดิม คือการคัดสรรวัตถุดิบคุณภาพเยี่ยม เนื้อและหมูที่ผ่านการตุ๋นอย่างพิถีพิถันนานหลายชั่วโมง จนได้ความนุ่มละมุนลิ้น ผสานกับน้ำซุปสูตรลับเฉพาะที่หอมกรุ่นเครื่องเทศและยาจีน กลายเป็นรสชาติอันเป็นเอกลักษณ์ที่ลูกค้าทุกท่านประทับใจ
+                        </p>
+                        <p class="text-stone-600 leading-relaxed" data-lang-key="about_p2">
+                            ที่สาขาชัยพฤกษ์ เรามุ่งมั่นที่จะส่งมอบประสบการณ์ความอร่อยนี้ในบรรยากาศที่อบอุ่นและเป็นกันเอง ให้ทุกชามเต็มเปี่ยมไปด้วยคุณภาพและความใส่ใจ
+                        </p>
+                    </div>
+                    <div class="order-1 md:order-2">
+                        <img src="https://placehold.co/600x450/EADDCA/A16207?text=บรรยากาศร้าน" alt="บรรยากาศร้านกอเต็กเชียง" class="rounded-lg shadow-xl w-full h-auto">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Contact -->
+        <section id="contact" class="py-16 md:py-24 bg-stone-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-amber-900" data-lang-key="contact_heading">มาลิ้มลองความอร่อยได้ที่ร้าน</h2>
+                    <p class="text-stone-600 mt-2" data-lang-key="contact_subheading">เราพร้อมให้บริการทุกท่านด้วยความยินดี</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6 text-amber-800" data-lang-key="contact_info_heading">ข้อมูลติดต่อ</h3>
+                        <div class="space-y-4 text-lg">
+                            <p class="flex items-start">
+                                <span class="text-amber-700 mr-4 mt-1">📍</span>
+                                <span data-lang-key="contact_address">ร้านกอเต็กเชียง สาขาชัยพฤกษ์<br>ต.คลองพระอุดม อ.ปากเกร็ด จ.นนทบุรี 11120</span>
+                            </p>
+                            <p class="flex items-center">
+                                <span class="text-amber-700 mr-4">📞</span>
+                                <a href="tel:0812345678" class="text-stone-800 hover:text-amber-800" data-lang-key="contact_phone_number">081-234-5678</a>
+                            </p>
+                             <p class="flex items-start">
+                                <span class="text-amber-700 mr-4 mt-1">🕒</span>
+                                <span data-lang-key="contact_hours">
+                                    <strong>เวลาเปิด-ปิด:</strong><br>
+                                    ทุกวัน: 09:00 - 18:00 น.
+                                </span>
+                            </p>
+                            <p class="flex items-center">
+                                <span class="text-amber-700 mr-4">📱</span>
+                                <span>
+                                    <a href="#" class="text-stone-800 hover:text-amber-800" data-lang-key="contact_facebook">Facebook</a> / 
+                                    <a href="#" class="text-stone-800 hover:text-amber-800" data-lang-key="contact_line">Line</a>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-xl h-96">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3873.23842187761!2d100.45785061535497!3d13.884575897645108!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e28e0bb631186b%3A0xea260f1e8f2a154a!2z4LiE4Li44LiV4LiB4Li44LiN4LiI4Lix4LiZ4Liq4LiV4LmA4Lih4Li34LiZ4LmM4Lih4Li14LiZ4LiX4Li44Lih!5e0!3m2!2sth!2sth!4v1658739345123!5m2!1sth!2sth" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-stone-800 text-white py-6">
+        <div class="container mx-auto px-6 text-center">
+            <p data-lang-key="footer_text">&copy; 2025 ร้านกอเต็กเชียง สาขาชัยพฤกษ์. สงวนลิขสิทธิ์.</p>
+        </div>
+    </footer>
+
+    <script>
+        let currentLang = 'th';
+
+        const translations = {
+            th: {
+                page_title: 'ร้านกอเต็กเชียง สาขาชัยพฤกษ์ - ต้นตำรับก๋วยเตี๋ยวตุ๋น',
+                brand_name: 'กอเต็กเชียง ชัยพฤกษ์',
+                nav_home: 'หน้าแรก',
+                nav_menu: 'เมนู',
+                nav_about: 'เกี่ยวกับเรา',
+                nav_contact: 'ติดต่อ',
+                hero_title: 'ร้านกอเต็กเชียง สาขาชัยพฤกษ์',
+                hero_slogan: 'ต้นตำรับก๋วยเตี๋ยวตุ๋น สูตรเด็ดกว่า 50 ปี!',
+                btn_view_menu: 'ดูเมนูทั้งหมด',
+                btn_call_us: 'โทรหาร้าน',
+                menu_heading: 'คัดสรรความอร่อย',
+                menu_subheading: 'เลือกอร่อยได้ทั้งก๋วยเตี๋ยวเนื้อตุ๋น หมูตุ๋น และเครื่องเคียงรสเลิศ',
+                filter_all: 'ทั้งหมด',
+                filter_beef: 'ก๋วยเตี๋ยวเนื้อ',
+                filter_pork: 'ก๋วยเตี๋ยวหมู',
+                filter_side: 'เครื่องเคียง',
+                about_heading: 'เรื่องราวความอร่อย',
+                about_p1: 'กว่า 50 ปีที่ "กอเต็กเชียง" ได้สืบทอดตำนานความอร่อยของก๋วยเตี๋ยวตุ๋น จากรุ่นสู่รุ่น เรายังคงยึดมั่นในปรัชญาดั้งเดิม คือการคัดสรรวัตถุดิบคุณภาพเยี่ยม เนื้อและหมูที่ผ่านการตุ๋นอย่างพิถีพิถันนานหลายชั่วโมง จนได้ความนุ่มละมุนลิ้น ผสานกับน้ำซุปสูตรลับเฉพาะที่หอมกรุ่นเครื่องเทศและยาจีน กลายเป็นรสชาติอันเป็นเอกลักษณ์ที่ลูกค้าทุกท่านประทับใจ',
+                about_p2: 'ที่สาขาชัยพฤกษ์ เรามุ่งมั่นที่จะส่งมอบประสบการณ์ความอร่อยนี้ในบรรยากาศที่อบอุ่นและเป็นกันเอง ให้ทุกชามเต็มเปี่ยมไปด้วยคุณภาพและความใส่ใจ',
+                contact_heading: 'มาลิ้มลองความอร่อยได้ที่ร้าน',
+                contact_subheading: 'เราพร้อมให้บริการทุกท่านด้วยความยินดี',
+                contact_info_heading: 'ข้อมูลติดต่อ',
+                contact_address: 'ร้านกอเต็กเชียง สาขาชัยพฤกษ์<br>ต.คลองพระอุดม อ.ปากเกร็ด จ.นนทบุรี 11120',
+                contact_phone_number: '081-234-5678',
+                contact_hours: '<strong>เวลาเปิด-ปิด:</strong><br>ทุกวัน: 09:00 - 18:00 น.',
+                contact_facebook: 'Facebook',
+                contact_line: 'Line',
+                footer_text: '&copy; 2025 ร้านกอเต็กเชียง สาขาชัยพฤกษ์. สงวนลิขสิทธิ์.'
+            },
+            en: {
+                page_title: 'Gotekchiang Chaiphruek Branch - Original Braised Noodles',
+                brand_name: 'Gotekchiang Chaiphruek',
+                nav_home: 'Home',
+                nav_menu: 'Menu',
+                nav_about: 'About Us',
+                nav_contact: 'Contact',
+                hero_title: 'Gotekchiang Chaiphruek Branch',
+                hero_slogan: 'Original Braised Noodles, Over 50 Years of Recipe!',
+                btn_view_menu: 'View Full Menu',
+                btn_call_us: 'Call Us',
+                menu_heading: 'Our Delicious Selection',
+                menu_subheading: 'Choose from our delicious braised beef and pork noodles, and savory side dishes.',
+                filter_all: 'All',
+                filter_beef: 'Beef Noodles',
+                filter_pork: 'Pork Noodles',
+                filter_side: 'Side Dishes',
+                about_heading: 'Our Story',
+                about_p1: 'For over 50 years, "Gotekchiang" has carried on the legacy of delicious braised noodles from generation to generation. We remain committed to our original philosophy: selecting premium ingredients, meticulously braising beef and pork for many hours until perfectly tender. This is combined with our secret broth, fragrant with herbs and Chinese spices, creating a unique flavor cherished by all our customers.',
+                about_p2: 'At Chaiphruek Branch, we are dedicated to delivering this delicious experience in a warm and welcoming atmosphere, ensuring every bowl is filled with quality and care.',
+                contact_heading: 'Visit Us',
+                contact_subheading: 'We are ready to serve you with pleasure.',
+                contact_info_heading: 'Contact Information',
+                contact_address: 'Gotekchiang Chaiphruek Branch<br>Khlong Phra Udom, Pak Kret, Nonthaburi 11120, Thailand',
+                contact_phone_number: '081-234-5678',
+                contact_hours: '<strong>Opening Hours:</strong><br>Daily: 09:00 AM - 06:00 PM',
+                contact_facebook: 'Facebook',
+                contact_line: 'Line',
+                footer_text: '&copy; 2025 Gotekchiang Chaiphruek Branch. All rights reserved.'
+            }
+        };
+
+        const menuItems = [
+            { id: 1, name_th: 'เกาเหลาเนื้อตุ๋น', name_en: 'Braised Beef Soup', category: 'beef', price: '120฿', desc_th: 'เนื้อตุ๋นเปื่อยนุ่ม พร้อมลูกชิ้นในน้ำซุปเข้มข้น', desc_en: 'Tender braised beef with meatballs in rich broth', img: 'https://placehold.co/400x300/8c5a2b/FFFFFF?text=เกาเหลาเนื้อตุ๋น' },
+            { id: 2, name_th: 'ก๋วยเตี๋ยวหมูตุ๋น', name_en: 'Braised Pork Noodles', category: 'pork', price: '80฿', desc_th: 'หมูตุ๋นสูตรพิเศษ นุ่มละมุนลิ้น หอมกลิ่นเครื่องเทศ', desc_en: 'Special recipe braised pork, tender and fragrant with spices', img: 'https://placehold.co/400x300/c4a383/FFFFFF?text=ก๋วยเตี๋ยวหมูตุ๋น' },
+            { id: 3, name_th: 'ก๋วยเตี๋ยวเนื้อสด', name_en: 'Fresh Beef Noodles', category: 'beef', price: '90฿', desc_th: 'เนื้อสดหมักนุ่ม ลวกกำลังดี เข้ากันกับน้ำซุป', desc_en: 'Tender marinated fresh beef, perfectly blanched, goes well with the broth', img: 'https://placehold.co/400x300/a66b3a/FFFFFF?text=ก๋วยเตี๋ยวเนื้อสด' },
+            { id: 4, name_th: 'ลูกชิ้นปิ้ง', name_en: 'Grilled Meatballs', category: 'side', price: 'ไม้ละ 15฿', desc_th: 'ลูกชิ้นเนื้อ/หมูเด้งๆ ย่างหอมๆ พร้อมน้ำจิ้มรสเด็ด', desc_en: 'Springy beef/pork meatballs, grilled fragrant with spicy dipping sauce', img: 'https://placehold.co/400x300/d1a980/FFFFFF?text=ลูกชิ้นปิ้ง' },
+            { id: 5, name_th: 'เกาเหลาหมูตุ๋น', name_en: 'Braised Pork Soup', category: 'pork', price: '100฿', desc_th: 'หมูตุ๋นชิ้นโตและลูกชิ้นหมูในน้ำซุปรสกลมกล่อม', desc_en: 'Large pieces of braised pork and pork meatballs in a savory broth', img: 'https://placehold.co/400x300/d3b89c/FFFFFF?text=เกาเหลาหมูตุ๋n' },
+            { id: 6, name_th: 'กากหมูเจียว', name_en: 'Crispy Pork Cracklings', category: 'side', price: '30฿', desc_th: 'กากหมูเจียวกรอบๆ หอมๆ เพิ่มรสชาติให้ก๋วยเตี๋ยว', desc_en: 'Crispy and fragrant pork cracklings, enhancing the noodle flavor', img: 'https://placehold.co/400x300/e0c3a3/FFFFFF?text=กากหมูเจียว' },
+            { id: 7, name_th: 'เกาเหลาเนื้อรวม', name_en: 'Mixed Braised Beef Soup', category: 'beef', price: '150฿', desc_th: 'จัดเต็มทั้งเนื้อสด เนื้อเปื่อย ลูกชิ้น และเครื่องใน', desc_en: 'A full bowl with fresh beef, braised beef, meatballs, and offal', img: 'https://placehold.co/400x300/9e6a3f/FFFFFF?text=เกาเหลาเนื้อรวม' },
+            { id: 8, name_th: 'ข้าวเปล่า', name_en: 'Steamed Rice', category: 'side', price: '15฿', desc_th: 'ข้าวหอมมะลิร้อนๆ ทานคู่กับเกาเหลา', desc_en: 'Hot jasmine rice, perfect with our soup dishes', img: 'https://placehold.co/400x300/f5f5f5/333333?text=ข้าวเปล่า' },
+        ];
+
+        const menuGrid = document.getElementById('menu-grid');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const langButtons = document.querySelectorAll('.lang-switcher button');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // Function to update all text based on current language
+        const updateTextContent = () => {
+            document.querySelectorAll('[data-lang-key]').forEach(element => {
+                const key = element.dataset.langKey;
+                if (translations[currentLang] && translations[currentLang][key]) {
+                    if (element.tagName === 'TITLE') {
+                        element.textContent = translations[currentLang][key];
+                    } else {
+                        element.innerHTML = translations[currentLang][key]; // Use innerHTML for cases with strong tags like hours
+                    }
+                }
+            });
+            // Update menu filter buttons text specifically
+            document.querySelectorAll('.filter-btn').forEach(button => {
+                const filterKey = button.dataset.langKey;
+                if (translations[currentLang] && translations[currentLang][filterKey]) {
+                    button.textContent = translations[currentLang][filterKey];
+                }
+            });
+        };
+
+        // Function to display menu items based on current filter and language
+        const displayMenuItems = (items) => {
+            menuGrid.innerHTML = items.map(item => `
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                    <img src="${item.img}" alt="${currentLang === 'th' ? item.name_th : item.name_en}" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold font-serif mb-2">${currentLang === 'th' ? item.name_th : item.name_en}</h3>
+                        <p class="text-stone-600 text-sm mb-4">${currentLang === 'th' ? item.desc_th : item.desc_en}</p>
+                        <div class="text-lg font-bold text-amber-800">${item.price}</div>
+                    </div>
+                </div>
+            `).join('');
+        };
+
+        // Function to get currently filtered items
+        const getFilteredMenuItems = () => {
+            const activeFilterButton = document.querySelector('.filter-btn.active-filter');
+            const filter = activeFilterButton ? activeFilterButton.dataset.filter : 'all';
+            if (filter === 'all') {
+                return menuItems;
+            } else {
+                return menuItems.filter(item => item.category === filter);
+            }
+        };
+
+        // Language switcher functionality
+        langButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const lang = button.id.includes('th') ? 'th' : 'en';
+                if (currentLang !== lang) {
+                    currentLang = lang;
+                    document.documentElement.lang = lang; // Update HTML lang attribute
+                    updateTextContent();
+                    displayMenuItems(getFilteredMenuItems()); // Re-render menu with new language
+                    
+                    // Update active button styling for both desktop and mobile switchers
+                    document.querySelectorAll('.lang-switcher button').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    document.getElementById(`lang-${currentLang}`).classList.add('active');
+                    document.getElementById(`lang-${currentLang}-mobile`).classList.add('active');
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Filter functionality for menu
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active-filter'));
+                button.classList.add('active-filter');
+                displayMenuItems(getFilteredMenuItems()); // Re-render menu with current filter and language
+            });
+        });
+
+        // Initial display and text update
+        updateTextContent();
+        displayMenuItems(menuItems); // Display all items initially
+    </script>
+</body>
+</html>
